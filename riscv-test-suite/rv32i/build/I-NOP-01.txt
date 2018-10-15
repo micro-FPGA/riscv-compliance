@@ -1,0 +1,256 @@
+
+startfiles:     file format elf32-littleriscv
+
+
+Disassembly of section .text.init:
+
+00000000 <_start>:
+   0:	0080006f          	j	8 <reset_vector>
+
+00000004 <fail_loop>:
+   4:	0000006f          	j	4 <fail_loop>
+
+00000008 <reset_vector>:
+   8:	00000193          	li	gp,0
+
+0000000c <begin_testcode>:
+   c:	00000293          	li	t0,0
+  10:	fe501ae3          	bne	zero,t0,4 <fail_loop>
+  14:	00001097          	auipc	ra,0x1
+  18:	ffc08093          	addi	ra,ra,-4 # 1010 <test_A1_res>
+  1c:	00200113          	li	sp,2
+  20:	00300193          	li	gp,3
+  24:	00400213          	li	tp,4
+  28:	00500293          	li	t0,5
+  2c:	00600313          	li	t1,6
+  30:	00700393          	li	t2,7
+  34:	00800413          	li	s0,8
+  38:	00900493          	li	s1,9
+  3c:	00a00513          	li	a0,10
+  40:	00b00593          	li	a1,11
+  44:	00c00613          	li	a2,12
+  48:	00d00693          	li	a3,13
+  4c:	00e00713          	li	a4,14
+  50:	00f00793          	li	a5,15
+  54:	01000813          	li	a6,16
+  58:	01100893          	li	a7,17
+  5c:	01200913          	li	s2,18
+  60:	01300993          	li	s3,19
+  64:	01400a13          	li	s4,20
+  68:	01500a93          	li	s5,21
+  6c:	01600b13          	li	s6,22
+  70:	01700b93          	li	s7,23
+  74:	01800c13          	li	s8,24
+  78:	01900c93          	li	s9,25
+  7c:	01a00d13          	li	s10,26
+  80:	01b00d93          	li	s11,27
+  84:	01c00e13          	li	t3,28
+  88:	01d00e93          	li	t4,29
+  8c:	01e00f13          	li	t5,30
+  90:	01f00f93          	li	t6,31
+  94:	00000013          	nop
+  98:	00000013          	nop
+  9c:	00000013          	nop
+  a0:	00000013          	nop
+  a4:	00000013          	nop
+  a8:	00000013          	nop
+  ac:	0000a023          	sw	zero,0(ra)
+  b0:	0020a223          	sw	sp,4(ra)
+  b4:	0030a423          	sw	gp,8(ra)
+  b8:	0040a623          	sw	tp,12(ra)
+  bc:	0050a823          	sw	t0,16(ra)
+  c0:	0060aa23          	sw	t1,20(ra)
+  c4:	0070ac23          	sw	t2,24(ra)
+  c8:	0080ae23          	sw	s0,28(ra)
+  cc:	0290a023          	sw	s1,32(ra)
+  d0:	02a0a223          	sw	a0,36(ra)
+  d4:	02b0a423          	sw	a1,40(ra)
+  d8:	02c0a623          	sw	a2,44(ra)
+  dc:	02d0a823          	sw	a3,48(ra)
+  e0:	02e0aa23          	sw	a4,52(ra)
+  e4:	02f0ac23          	sw	a5,56(ra)
+  e8:	0300ae23          	sw	a6,60(ra)
+  ec:	0510a023          	sw	a7,64(ra)
+  f0:	0520a223          	sw	s2,68(ra)
+  f4:	0530a423          	sw	s3,72(ra)
+  f8:	0540a623          	sw	s4,76(ra)
+  fc:	0550a823          	sw	s5,80(ra)
+ 100:	0560aa23          	sw	s6,84(ra)
+ 104:	0570ac23          	sw	s7,88(ra)
+ 108:	0580ae23          	sw	s8,92(ra)
+ 10c:	0790a023          	sw	s9,96(ra)
+ 110:	07a0a223          	sw	s10,100(ra)
+ 114:	07b0a423          	sw	s11,104(ra)
+ 118:	07c0a623          	sw	t3,108(ra)
+ 11c:	07d0a823          	sw	t4,112(ra)
+ 120:	07e0aa23          	sw	t5,116(ra)
+ 124:	07f0ac23          	sw	t6,120(ra)
+ 128:	00000293          	li	t0,0
+ 12c:	ec501ce3          	bne	zero,t0,4 <fail_loop>
+ 130:	00200293          	li	t0,2
+ 134:	ec5118e3          	bne	sp,t0,4 <fail_loop>
+ 138:	00300293          	li	t0,3
+ 13c:	ec5194e3          	bne	gp,t0,4 <fail_loop>
+ 140:	00400293          	li	t0,4
+ 144:	ec5210e3          	bne	tp,t0,4 <fail_loop>
+ 148:	00500293          	li	t0,5
+ 14c:	ea529ce3          	bne	t0,t0,4 <fail_loop>
+ 150:	00600293          	li	t0,6
+ 154:	ea5318e3          	bne	t1,t0,4 <fail_loop>
+ 158:	00700293          	li	t0,7
+ 15c:	ea5394e3          	bne	t2,t0,4 <fail_loop>
+ 160:	00800293          	li	t0,8
+ 164:	ea5410e3          	bne	s0,t0,4 <fail_loop>
+ 168:	00900293          	li	t0,9
+ 16c:	e8549ce3          	bne	s1,t0,4 <fail_loop>
+ 170:	00b00293          	li	t0,11
+ 174:	e85598e3          	bne	a1,t0,4 <fail_loop>
+ 178:	00c00293          	li	t0,12
+ 17c:	e85614e3          	bne	a2,t0,4 <fail_loop>
+ 180:	00d00293          	li	t0,13
+ 184:	e85690e3          	bne	a3,t0,4 <fail_loop>
+ 188:	00e00293          	li	t0,14
+ 18c:	e6571ce3          	bne	a4,t0,4 <fail_loop>
+ 190:	00f00293          	li	t0,15
+ 194:	e65798e3          	bne	a5,t0,4 <fail_loop>
+ 198:	01000293          	li	t0,16
+ 19c:	e65814e3          	bne	a6,t0,4 <fail_loop>
+ 1a0:	01100293          	li	t0,17
+ 1a4:	e65890e3          	bne	a7,t0,4 <fail_loop>
+ 1a8:	01200293          	li	t0,18
+ 1ac:	e4591ce3          	bne	s2,t0,4 <fail_loop>
+ 1b0:	01300293          	li	t0,19
+ 1b4:	e45998e3          	bne	s3,t0,4 <fail_loop>
+ 1b8:	01400293          	li	t0,20
+ 1bc:	e45a14e3          	bne	s4,t0,4 <fail_loop>
+ 1c0:	01500293          	li	t0,21
+ 1c4:	e45a90e3          	bne	s5,t0,4 <fail_loop>
+ 1c8:	01600293          	li	t0,22
+ 1cc:	e25b1ce3          	bne	s6,t0,4 <fail_loop>
+ 1d0:	01700293          	li	t0,23
+ 1d4:	e25b98e3          	bne	s7,t0,4 <fail_loop>
+ 1d8:	01800293          	li	t0,24
+ 1dc:	e25c14e3          	bne	s8,t0,4 <fail_loop>
+ 1e0:	01900293          	li	t0,25
+ 1e4:	e25c90e3          	bne	s9,t0,4 <fail_loop>
+ 1e8:	01a00293          	li	t0,26
+ 1ec:	e05d1ce3          	bne	s10,t0,4 <fail_loop>
+ 1f0:	01b00293          	li	t0,27
+ 1f4:	e05d98e3          	bne	s11,t0,4 <fail_loop>
+ 1f8:	01c00293          	li	t0,28
+ 1fc:	e05e14e3          	bne	t3,t0,4 <fail_loop>
+ 200:	01d00293          	li	t0,29
+ 204:	e05e90e3          	bne	t4,t0,4 <fail_loop>
+ 208:	01e00293          	li	t0,30
+ 20c:	de5f1ce3          	bne	t5,t0,4 <fail_loop>
+ 210:	01f00293          	li	t0,31
+ 214:	de5f98e3          	bne	t6,t0,4 <fail_loop>
+ 218:	00001197          	auipc	gp,0x1
+ 21c:	e7418193          	addi	gp,gp,-396 # 108c <test_A2_res>
+ 220:	00000417          	auipc	s0,0x0
+ 224:	00000013          	nop
+ 228:	00000013          	nop
+ 22c:	00000013          	nop
+ 230:	00000013          	nop
+ 234:	00000013          	nop
+ 238:	00000497          	auipc	s1,0x0
+ 23c:	408484b3          	sub	s1,s1,s0
+ 240:	0091a023          	sw	s1,0(gp)
+ 244:	01800293          	li	t0,24
+ 248:	da549ee3          	bne	s1,t0,4 <fail_loop>
+ 24c:	5b40006f          	j	800 <ok_loop>
+
+00000250 <end_testcode>:
+ 250:	c0001073          	unimp
+	...
+
+Disassembly of section .tohost:
+
+00000800 <ok_loop>:
+ 800:	0000006f          	j	800 <ok_loop>
+
+Disassembly of section .data:
+
+00001000 <begin_signature>:
+    1000:	bbbbbbbb          	0xbbbbbbbb
+    1004:	bbbbbbbb          	0xbbbbbbbb
+    1008:	bbbbbbbb          	0xbbbbbbbb
+    100c:	bbbbbbbb          	0xbbbbbbbb
+
+00001010 <test_A1_res>:
+    1010:	ffff                	0xffff
+    1012:	ffff                	0xffff
+    1014:	ffff                	0xffff
+    1016:	ffff                	0xffff
+    1018:	ffff                	0xffff
+    101a:	ffff                	0xffff
+    101c:	ffff                	0xffff
+    101e:	ffff                	0xffff
+    1020:	ffff                	0xffff
+    1022:	ffff                	0xffff
+    1024:	ffff                	0xffff
+    1026:	ffff                	0xffff
+    1028:	ffff                	0xffff
+    102a:	ffff                	0xffff
+    102c:	ffff                	0xffff
+    102e:	ffff                	0xffff
+    1030:	ffff                	0xffff
+    1032:	ffff                	0xffff
+    1034:	ffff                	0xffff
+    1036:	ffff                	0xffff
+    1038:	ffff                	0xffff
+    103a:	ffff                	0xffff
+    103c:	ffff                	0xffff
+    103e:	ffff                	0xffff
+    1040:	ffff                	0xffff
+    1042:	ffff                	0xffff
+    1044:	ffff                	0xffff
+    1046:	ffff                	0xffff
+    1048:	ffff                	0xffff
+    104a:	ffff                	0xffff
+    104c:	ffff                	0xffff
+    104e:	ffff                	0xffff
+    1050:	ffff                	0xffff
+    1052:	ffff                	0xffff
+    1054:	ffff                	0xffff
+    1056:	ffff                	0xffff
+    1058:	ffff                	0xffff
+    105a:	ffff                	0xffff
+    105c:	ffff                	0xffff
+    105e:	ffff                	0xffff
+    1060:	ffff                	0xffff
+    1062:	ffff                	0xffff
+    1064:	ffff                	0xffff
+    1066:	ffff                	0xffff
+    1068:	ffff                	0xffff
+    106a:	ffff                	0xffff
+    106c:	ffff                	0xffff
+    106e:	ffff                	0xffff
+    1070:	ffff                	0xffff
+    1072:	ffff                	0xffff
+    1074:	ffff                	0xffff
+    1076:	ffff                	0xffff
+    1078:	ffff                	0xffff
+    107a:	ffff                	0xffff
+    107c:	ffff                	0xffff
+    107e:	ffff                	0xffff
+    1080:	ffff                	0xffff
+    1082:	ffff                	0xffff
+    1084:	ffff                	0xffff
+    1086:	ffff                	0xffff
+    1088:	ffff                	0xffff
+    108a:	ffff                	0xffff
+
+0000108c <test_A2_res>:
+    108c:	ffff                	0xffff
+    108e:	ffff                	0xffff
+
+00001090 <end_signature>:
+    1090:	eeee                	fsw	fs11,92(sp)
+    1092:	eeee                	fsw	fs11,92(sp)
+    1094:	eeee                	fsw	fs11,92(sp)
+    1096:	eeee                	fsw	fs11,92(sp)
+    1098:	eeee                	fsw	fs11,92(sp)
+    109a:	eeee                	fsw	fs11,92(sp)
+    109c:	eeee                	fsw	fs11,92(sp)
+    109e:	eeee                	fsw	fs11,92(sp)

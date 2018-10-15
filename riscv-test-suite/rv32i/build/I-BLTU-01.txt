@@ -1,0 +1,454 @@
+
+startfiles:     file format elf32-littleriscv
+
+
+Disassembly of section .text.init:
+
+00000000 <_start>:
+   0:	0080006f          	j	8 <reset_vector>
+
+00000004 <fail_loop>:
+   4:	0000006f          	j	4 <fail_loop>
+
+00000008 <reset_vector>:
+   8:	00000193          	li	gp,0
+
+0000000c <begin_testcode>:
+   c:	00000293          	li	t0,0
+  10:	fe501ae3          	bne	zero,t0,4 <fail_loop>
+  14:	00001097          	auipc	ra,0x1
+  18:	fec08093          	addi	ra,ra,-20 # 1000 <test_A1_data>
+  1c:	00001117          	auipc	sp,0x1
+  20:	01410113          	addi	sp,sp,20 # 1030 <test_A1_res>
+  24:	0000a183          	lw	gp,0(ra)
+  28:	00000213          	li	tp,0
+  2c:	00100293          	li	t0,1
+  30:	fff00313          	li	t1,-1
+  34:	800003b7          	lui	t2,0x80000
+  38:	fff38393          	addi	t2,t2,-1 # 7fffffff <_end+0x7fffef1f>
+  3c:	80000437          	lui	s0,0x80000
+  40:	00000f93          	li	t6,0
+  44:	0041e463          	bltu	gp,tp,4c <begin_testcode+0x40>
+  48:	001fef93          	ori	t6,t6,1
+  4c:	0051e463          	bltu	gp,t0,54 <begin_testcode+0x48>
+  50:	002fef93          	ori	t6,t6,2
+  54:	0061e463          	bltu	gp,t1,5c <begin_testcode+0x50>
+  58:	004fef93          	ori	t6,t6,4
+  5c:	0071e463          	bltu	gp,t2,64 <begin_testcode+0x58>
+  60:	008fef93          	ori	t6,t6,8
+  64:	0081e463          	bltu	gp,s0,6c <begin_testcode+0x60>
+  68:	010fef93          	ori	t6,t6,16
+  6c:	00312023          	sw	gp,0(sp)
+  70:	00412223          	sw	tp,4(sp)
+  74:	00512423          	sw	t0,8(sp)
+  78:	00612623          	sw	t1,12(sp)
+  7c:	00712823          	sw	t2,16(sp)
+  80:	00812a23          	sw	s0,20(sp)
+  84:	01f12c23          	sw	t6,24(sp)
+  88:	00000293          	li	t0,0
+  8c:	f6519ce3          	bne	gp,t0,4 <fail_loop>
+  90:	00000293          	li	t0,0
+  94:	f65218e3          	bne	tp,t0,4 <fail_loop>
+  98:	00000293          	li	t0,0
+  9c:	f65294e3          	bne	t0,t0,4 <fail_loop>
+  a0:	fff00293          	li	t0,-1
+  a4:	f65310e3          	bne	t1,t0,4 <fail_loop>
+  a8:	800002b7          	lui	t0,0x80000
+  ac:	fff28293          	addi	t0,t0,-1 # 7fffffff <_end+0x7fffef1f>
+  b0:	f4539ae3          	bne	t2,t0,4 <fail_loop>
+  b4:	800002b7          	lui	t0,0x80000
+  b8:	f45416e3          	bne	s0,t0,4 <fail_loop>
+  bc:	00100293          	li	t0,1
+  c0:	f45f92e3          	bne	t6,t0,4 <fail_loop>
+  c4:	00001097          	auipc	ra,0x1
+  c8:	f4008093          	addi	ra,ra,-192 # 1004 <test_A2_data>
+  cc:	00001117          	auipc	sp,0x1
+  d0:	f8010113          	addi	sp,sp,-128 # 104c <test_A2_res>
+  d4:	0000a303          	lw	t1,0(ra)
+  d8:	00000393          	li	t2,0
+  dc:	00100413          	li	s0,1
+  e0:	fff00493          	li	s1,-1
+  e4:	80000537          	lui	a0,0x80000
+  e8:	fff50513          	addi	a0,a0,-1 # 7fffffff <_end+0x7fffef1f>
+  ec:	800005b7          	lui	a1,0x80000
+  f0:	00000f93          	li	t6,0
+  f4:	00736463          	bltu	t1,t2,fc <begin_testcode+0xf0>
+  f8:	001fef93          	ori	t6,t6,1
+  fc:	00836463          	bltu	t1,s0,104 <begin_testcode+0xf8>
+ 100:	002fef93          	ori	t6,t6,2
+ 104:	00936463          	bltu	t1,s1,10c <begin_testcode+0x100>
+ 108:	004fef93          	ori	t6,t6,4
+ 10c:	00a36463          	bltu	t1,a0,114 <begin_testcode+0x108>
+ 110:	008fef93          	ori	t6,t6,8
+ 114:	00b36463          	bltu	t1,a1,11c <begin_testcode+0x110>
+ 118:	010fef93          	ori	t6,t6,16
+ 11c:	00612023          	sw	t1,0(sp)
+ 120:	00712223          	sw	t2,4(sp)
+ 124:	00812423          	sw	s0,8(sp)
+ 128:	00912623          	sw	s1,12(sp)
+ 12c:	00a12823          	sw	a0,16(sp)
+ 130:	00b12a23          	sw	a1,20(sp)
+ 134:	01f12c23          	sw	t6,24(sp)
+ 138:	00100293          	li	t0,1
+ 13c:	ec5314e3          	bne	t1,t0,4 <fail_loop>
+ 140:	00000293          	li	t0,0
+ 144:	ec5390e3          	bne	t2,t0,4 <fail_loop>
+ 148:	00100293          	li	t0,1
+ 14c:	ea541ce3          	bne	s0,t0,4 <fail_loop>
+ 150:	fff00293          	li	t0,-1
+ 154:	ea5498e3          	bne	s1,t0,4 <fail_loop>
+ 158:	800002b7          	lui	t0,0x80000
+ 15c:	ea5594e3          	bne	a1,t0,4 <fail_loop>
+ 160:	00300293          	li	t0,3
+ 164:	ea5f90e3          	bne	t6,t0,4 <fail_loop>
+ 168:	00001097          	auipc	ra,0x1
+ 16c:	ea008093          	addi	ra,ra,-352 # 1008 <test_A3_data>
+ 170:	00001117          	auipc	sp,0x1
+ 174:	ef810113          	addi	sp,sp,-264 # 1068 <test_A3_res>
+ 178:	0000a603          	lw	a2,0(ra)
+ 17c:	00000693          	li	a3,0
+ 180:	00100713          	li	a4,1
+ 184:	fff00793          	li	a5,-1
+ 188:	80000837          	lui	a6,0x80000
+ 18c:	fff80813          	addi	a6,a6,-1 # 7fffffff <_end+0x7fffef1f>
+ 190:	800008b7          	lui	a7,0x80000
+ 194:	00000f93          	li	t6,0
+ 198:	00d66463          	bltu	a2,a3,1a0 <begin_testcode+0x194>
+ 19c:	001fef93          	ori	t6,t6,1
+ 1a0:	00e66463          	bltu	a2,a4,1a8 <begin_testcode+0x19c>
+ 1a4:	002fef93          	ori	t6,t6,2
+ 1a8:	00f66463          	bltu	a2,a5,1b0 <begin_testcode+0x1a4>
+ 1ac:	004fef93          	ori	t6,t6,4
+ 1b0:	01066463          	bltu	a2,a6,1b8 <begin_testcode+0x1ac>
+ 1b4:	008fef93          	ori	t6,t6,8
+ 1b8:	01166463          	bltu	a2,a7,1c0 <begin_testcode+0x1b4>
+ 1bc:	010fef93          	ori	t6,t6,16
+ 1c0:	00c12023          	sw	a2,0(sp)
+ 1c4:	00d12223          	sw	a3,4(sp)
+ 1c8:	00e12423          	sw	a4,8(sp)
+ 1cc:	00f12623          	sw	a5,12(sp)
+ 1d0:	01012823          	sw	a6,16(sp)
+ 1d4:	01112a23          	sw	a7,20(sp)
+ 1d8:	01f12c23          	sw	t6,24(sp)
+ 1dc:	fff00293          	li	t0,-1
+ 1e0:	e25612e3          	bne	a2,t0,4 <fail_loop>
+ 1e4:	00000293          	li	t0,0
+ 1e8:	e0569ee3          	bne	a3,t0,4 <fail_loop>
+ 1ec:	00100293          	li	t0,1
+ 1f0:	e0571ae3          	bne	a4,t0,4 <fail_loop>
+ 1f4:	fff00293          	li	t0,-1
+ 1f8:	e05796e3          	bne	a5,t0,4 <fail_loop>
+ 1fc:	800002b7          	lui	t0,0x80000
+ 200:	fff28293          	addi	t0,t0,-1 # 7fffffff <_end+0x7fffef1f>
+ 204:	e05810e3          	bne	a6,t0,4 <fail_loop>
+ 208:	800002b7          	lui	t0,0x80000
+ 20c:	de589ce3          	bne	a7,t0,4 <fail_loop>
+ 210:	01f00293          	li	t0,31
+ 214:	de5f98e3          	bne	t6,t0,4 <fail_loop>
+ 218:	00001097          	auipc	ra,0x1
+ 21c:	df408093          	addi	ra,ra,-524 # 100c <test_A4_data>
+ 220:	00001117          	auipc	sp,0x1
+ 224:	e6410113          	addi	sp,sp,-412 # 1084 <test_A4_res>
+ 228:	0000a903          	lw	s2,0(ra)
+ 22c:	00000993          	li	s3,0
+ 230:	00100a13          	li	s4,1
+ 234:	fff00a93          	li	s5,-1
+ 238:	80000b37          	lui	s6,0x80000
+ 23c:	fffb0b13          	addi	s6,s6,-1 # 7fffffff <_end+0x7fffef1f>
+ 240:	80000bb7          	lui	s7,0x80000
+ 244:	00000f93          	li	t6,0
+ 248:	01396463          	bltu	s2,s3,250 <begin_testcode+0x244>
+ 24c:	001fef93          	ori	t6,t6,1
+ 250:	01496463          	bltu	s2,s4,258 <begin_testcode+0x24c>
+ 254:	002fef93          	ori	t6,t6,2
+ 258:	01596463          	bltu	s2,s5,260 <begin_testcode+0x254>
+ 25c:	004fef93          	ori	t6,t6,4
+ 260:	01696463          	bltu	s2,s6,268 <begin_testcode+0x25c>
+ 264:	008fef93          	ori	t6,t6,8
+ 268:	01796463          	bltu	s2,s7,270 <begin_testcode+0x264>
+ 26c:	010fef93          	ori	t6,t6,16
+ 270:	01212023          	sw	s2,0(sp)
+ 274:	01312223          	sw	s3,4(sp)
+ 278:	01412423          	sw	s4,8(sp)
+ 27c:	01512623          	sw	s5,12(sp)
+ 280:	01612823          	sw	s6,16(sp)
+ 284:	01712a23          	sw	s7,20(sp)
+ 288:	01f12c23          	sw	t6,24(sp)
+ 28c:	800002b7          	lui	t0,0x80000
+ 290:	fff28293          	addi	t0,t0,-1 # 7fffffff <_end+0x7fffef1f>
+ 294:	d65918e3          	bne	s2,t0,4 <fail_loop>
+ 298:	00000293          	li	t0,0
+ 29c:	d65994e3          	bne	s3,t0,4 <fail_loop>
+ 2a0:	00100293          	li	t0,1
+ 2a4:	d65a10e3          	bne	s4,t0,4 <fail_loop>
+ 2a8:	fff00293          	li	t0,-1
+ 2ac:	d45a9ce3          	bne	s5,t0,4 <fail_loop>
+ 2b0:	800002b7          	lui	t0,0x80000
+ 2b4:	fff28293          	addi	t0,t0,-1 # 7fffffff <_end+0x7fffef1f>
+ 2b8:	d45b16e3          	bne	s6,t0,4 <fail_loop>
+ 2bc:	800002b7          	lui	t0,0x80000
+ 2c0:	d45b92e3          	bne	s7,t0,4 <fail_loop>
+ 2c4:	00b00293          	li	t0,11
+ 2c8:	d25f9ee3          	bne	t6,t0,4 <fail_loop>
+ 2cc:	00001097          	auipc	ra,0x1
+ 2d0:	d4408093          	addi	ra,ra,-700 # 1010 <test_A5_data>
+ 2d4:	00001117          	auipc	sp,0x1
+ 2d8:	dcc10113          	addi	sp,sp,-564 # 10a0 <test_A5_res>
+ 2dc:	0000ac03          	lw	s8,0(ra)
+ 2e0:	00000c93          	li	s9,0
+ 2e4:	00100d13          	li	s10,1
+ 2e8:	fff00d93          	li	s11,-1
+ 2ec:	80000e37          	lui	t3,0x80000
+ 2f0:	fffe0e13          	addi	t3,t3,-1 # 7fffffff <_end+0x7fffef1f>
+ 2f4:	80000eb7          	lui	t4,0x80000
+ 2f8:	00000f93          	li	t6,0
+ 2fc:	019c6463          	bltu	s8,s9,304 <begin_testcode+0x2f8>
+ 300:	001fef93          	ori	t6,t6,1
+ 304:	01ac6463          	bltu	s8,s10,30c <begin_testcode+0x300>
+ 308:	002fef93          	ori	t6,t6,2
+ 30c:	01bc6463          	bltu	s8,s11,314 <begin_testcode+0x308>
+ 310:	004fef93          	ori	t6,t6,4
+ 314:	01cc6463          	bltu	s8,t3,31c <begin_testcode+0x310>
+ 318:	008fef93          	ori	t6,t6,8
+ 31c:	01dc6463          	bltu	s8,t4,324 <begin_testcode+0x318>
+ 320:	010fef93          	ori	t6,t6,16
+ 324:	01812023          	sw	s8,0(sp)
+ 328:	01912223          	sw	s9,4(sp)
+ 32c:	01a12423          	sw	s10,8(sp)
+ 330:	01b12623          	sw	s11,12(sp)
+ 334:	01c12823          	sw	t3,16(sp)
+ 338:	01d12a23          	sw	t4,20(sp)
+ 33c:	01f12c23          	sw	t6,24(sp)
+ 340:	800002b7          	lui	t0,0x80000
+ 344:	cc5c10e3          	bne	s8,t0,4 <fail_loop>
+ 348:	00000293          	li	t0,0
+ 34c:	ca5c9ce3          	bne	s9,t0,4 <fail_loop>
+ 350:	00100293          	li	t0,1
+ 354:	ca5d18e3          	bne	s10,t0,4 <fail_loop>
+ 358:	fff00293          	li	t0,-1
+ 35c:	ca5d94e3          	bne	s11,t0,4 <fail_loop>
+ 360:	800002b7          	lui	t0,0x80000
+ 364:	fff28293          	addi	t0,t0,-1 # 7fffffff <_end+0x7fffef1f>
+ 368:	c85e1ee3          	bne	t3,t0,4 <fail_loop>
+ 36c:	800002b7          	lui	t0,0x80000
+ 370:	c85e9ae3          	bne	t4,t0,4 <fail_loop>
+ 374:	01b00293          	li	t0,27
+ 378:	c85f96e3          	bne	t6,t0,4 <fail_loop>
+ 37c:	00001d97          	auipc	s11,0x1
+ 380:	d40d8d93          	addi	s11,s11,-704 # 10bc <test_B_res>
+ 384:	00000093          	li	ra,0
+ 388:	00100113          	li	sp,1
+ 38c:	fff00193          	li	gp,-1
+ 390:	80000237          	lui	tp,0x80000
+ 394:	fff20213          	addi	tp,tp,-1 # 7fffffff <_end+0x7fffef1f>
+ 398:	800002b7          	lui	t0,0x80000
+ 39c:	00000f93          	li	t6,0
+ 3a0:	0000e463          	bltu	ra,zero,3a8 <begin_testcode+0x39c>
+ 3a4:	001fef93          	ori	t6,t6,1
+ 3a8:	00016463          	bltu	sp,zero,3b0 <begin_testcode+0x3a4>
+ 3ac:	002fef93          	ori	t6,t6,2
+ 3b0:	0001e463          	bltu	gp,zero,3b8 <begin_testcode+0x3ac>
+ 3b4:	004fef93          	ori	t6,t6,4
+ 3b8:	00026463          	bltu	tp,zero,3c0 <begin_testcode+0x3b4>
+ 3bc:	008fef93          	ori	t6,t6,8
+ 3c0:	0002e463          	bltu	t0,zero,3c8 <begin_testcode+0x3bc>
+ 3c4:	010fef93          	ori	t6,t6,16
+ 3c8:	00106463          	bltu	zero,ra,3d0 <begin_testcode+0x3c4>
+ 3cc:	020fef93          	ori	t6,t6,32
+ 3d0:	00206463          	bltu	zero,sp,3d8 <begin_testcode+0x3cc>
+ 3d4:	040fef93          	ori	t6,t6,64
+ 3d8:	00306463          	bltu	zero,gp,3e0 <begin_testcode+0x3d4>
+ 3dc:	080fef93          	ori	t6,t6,128
+ 3e0:	00406463          	bltu	zero,tp,3e8 <begin_testcode+0x3dc>
+ 3e4:	100fef93          	ori	t6,t6,256
+ 3e8:	00506463          	bltu	zero,t0,3f0 <begin_testcode+0x3e4>
+ 3ec:	200fef93          	ori	t6,t6,512
+ 3f0:	01fda023          	sw	t6,0(s11)
+ 3f4:	03f00293          	li	t0,63
+ 3f8:	c05f96e3          	bne	t6,t0,4 <fail_loop>
+ 3fc:	00001a97          	auipc	s5,0x1
+ 400:	c18a8a93          	addi	s5,s5,-1000 # 1014 <test_C_data>
+ 404:	00001b17          	auipc	s6,0x1
+ 408:	cbcb0b13          	addi	s6,s6,-836 # 10c0 <test_C_res>
+ 40c:	000aaf83          	lw	t6,0(s5)
+ 410:	fff00113          	li	sp,-1
+ 414:	fff00193          	li	gp,-1
+ 418:	0fedd237          	lui	tp,0xfedd
+ 41c:	ba920213          	addi	tp,tp,-1111 # fedcba9 <_end+0xfedbac9>
+ 420:	03f06463          	bltu	zero,t6,448 <begin_testcode+0x43c>
+ 424:	00000113          	li	sp,0
+ 428:	00000193          	li	gp,0
+ 42c:	00000213          	li	tp,0
+ 430:	876541b7          	lui	gp,0x87654
+ 434:	32118193          	addi	gp,gp,801 # 87654321 <_end+0x87653241>
+ 438:	03f06463          	bltu	zero,t6,460 <begin_testcode+0x454>
+ 43c:	00000113          	li	sp,0
+ 440:	00000193          	li	gp,0
+ 444:	00000213          	li	tp,0
+ 448:	9abce137          	lui	sp,0x9abce
+ 44c:	ef010113          	addi	sp,sp,-272 # 9abcdef0 <_end+0x9abcce10>
+ 450:	fff060e3          	bltu	zero,t6,430 <begin_testcode+0x424>
+ 454:	00000113          	li	sp,0
+ 458:	00000193          	li	gp,0
+ 45c:	00000213          	li	tp,0
+ 460:	000b2023          	sw	zero,0(s6)
+ 464:	002b2223          	sw	sp,4(s6)
+ 468:	003b2423          	sw	gp,8(s6)
+ 46c:	004b2623          	sw	tp,12(s6)
+ 470:	00000293          	li	t0,0
+ 474:	b85018e3          	bne	zero,t0,4 <fail_loop>
+ 478:	9abce2b7          	lui	t0,0x9abce
+ 47c:	ef028293          	addi	t0,t0,-272 # 9abcdef0 <_end+0x9abcce10>
+ 480:	b85112e3          	bne	sp,t0,4 <fail_loop>
+ 484:	876542b7          	lui	t0,0x87654
+ 488:	32128293          	addi	t0,t0,801 # 87654321 <_end+0x87653241>
+ 48c:	b6519ce3          	bne	gp,t0,4 <fail_loop>
+ 490:	0fedd2b7          	lui	t0,0xfedd
+ 494:	ba928293          	addi	t0,t0,-1111 # fedcba9 <_end+0xfedbac9>
+ 498:	b65216e3          	bne	tp,t0,4 <fail_loop>
+ 49c:	3640006f          	j	800 <ok_loop>
+
+000004a0 <end_testcode>:
+ 4a0:	c0001073          	unimp
+	...
+
+Disassembly of section .tohost:
+
+00000800 <ok_loop>:
+ 800:	0000006f          	j	800 <ok_loop>
+
+Disassembly of section .data:
+
+00001000 <test_A1_data>:
+    1000:	0000                	unimp
+	...
+
+00001004 <test_A2_data>:
+    1004:	0001                	nop
+	...
+
+00001008 <test_A3_data>:
+    1008:	ffff                	0xffff
+    100a:	ffff                	0xffff
+
+0000100c <test_A4_data>:
+    100c:	ffff                	0xffff
+    100e:	7fff                	0x7fff
+
+00001010 <test_A5_data>:
+    1010:	0000                	unimp
+    1012:	8000                	0x8000
+
+00001014 <test_C_data>:
+    1014:	0001                	nop
+	...
+
+00001020 <begin_signature>:
+    1020:	bbbbbbbb          	0xbbbbbbbb
+    1024:	bbbbbbbb          	0xbbbbbbbb
+    1028:	bbbbbbbb          	0xbbbbbbbb
+    102c:	bbbbbbbb          	0xbbbbbbbb
+
+00001030 <test_A1_res>:
+    1030:	ffff                	0xffff
+    1032:	ffff                	0xffff
+    1034:	ffff                	0xffff
+    1036:	ffff                	0xffff
+    1038:	ffff                	0xffff
+    103a:	ffff                	0xffff
+    103c:	ffff                	0xffff
+    103e:	ffff                	0xffff
+    1040:	ffff                	0xffff
+    1042:	ffff                	0xffff
+    1044:	ffff                	0xffff
+    1046:	ffff                	0xffff
+    1048:	ffff                	0xffff
+    104a:	ffff                	0xffff
+
+0000104c <test_A2_res>:
+    104c:	ffff                	0xffff
+    104e:	ffff                	0xffff
+    1050:	ffff                	0xffff
+    1052:	ffff                	0xffff
+    1054:	ffff                	0xffff
+    1056:	ffff                	0xffff
+    1058:	ffff                	0xffff
+    105a:	ffff                	0xffff
+    105c:	ffff                	0xffff
+    105e:	ffff                	0xffff
+    1060:	ffff                	0xffff
+    1062:	ffff                	0xffff
+    1064:	ffff                	0xffff
+    1066:	ffff                	0xffff
+
+00001068 <test_A3_res>:
+    1068:	ffff                	0xffff
+    106a:	ffff                	0xffff
+    106c:	ffff                	0xffff
+    106e:	ffff                	0xffff
+    1070:	ffff                	0xffff
+    1072:	ffff                	0xffff
+    1074:	ffff                	0xffff
+    1076:	ffff                	0xffff
+    1078:	ffff                	0xffff
+    107a:	ffff                	0xffff
+    107c:	ffff                	0xffff
+    107e:	ffff                	0xffff
+    1080:	ffff                	0xffff
+    1082:	ffff                	0xffff
+
+00001084 <test_A4_res>:
+    1084:	ffff                	0xffff
+    1086:	ffff                	0xffff
+    1088:	ffff                	0xffff
+    108a:	ffff                	0xffff
+    108c:	ffff                	0xffff
+    108e:	ffff                	0xffff
+    1090:	ffff                	0xffff
+    1092:	ffff                	0xffff
+    1094:	ffff                	0xffff
+    1096:	ffff                	0xffff
+    1098:	ffff                	0xffff
+    109a:	ffff                	0xffff
+    109c:	ffff                	0xffff
+    109e:	ffff                	0xffff
+
+000010a0 <test_A5_res>:
+    10a0:	ffff                	0xffff
+    10a2:	ffff                	0xffff
+    10a4:	ffff                	0xffff
+    10a6:	ffff                	0xffff
+    10a8:	ffff                	0xffff
+    10aa:	ffff                	0xffff
+    10ac:	ffff                	0xffff
+    10ae:	ffff                	0xffff
+    10b0:	ffff                	0xffff
+    10b2:	ffff                	0xffff
+    10b4:	ffff                	0xffff
+    10b6:	ffff                	0xffff
+    10b8:	ffff                	0xffff
+    10ba:	ffff                	0xffff
+
+000010bc <test_B_res>:
+    10bc:	ffff                	0xffff
+    10be:	ffff                	0xffff
+
+000010c0 <test_C_res>:
+    10c0:	ffff                	0xffff
+    10c2:	ffff                	0xffff
+    10c4:	ffff                	0xffff
+    10c6:	ffff                	0xffff
+    10c8:	ffff                	0xffff
+    10ca:	ffff                	0xffff
+    10cc:	ffff                	0xffff
+    10ce:	ffff                	0xffff
+
+000010d0 <end_signature>:
+    10d0:	eeee                	fsw	fs11,92(sp)
+    10d2:	eeee                	fsw	fs11,92(sp)
+    10d4:	eeee                	fsw	fs11,92(sp)
+    10d6:	eeee                	fsw	fs11,92(sp)
+    10d8:	eeee                	fsw	fs11,92(sp)
+    10da:	eeee                	fsw	fs11,92(sp)
+    10dc:	eeee                	fsw	fs11,92(sp)
+    10de:	eeee                	fsw	fs11,92(sp)

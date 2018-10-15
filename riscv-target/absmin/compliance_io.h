@@ -2,6 +2,7 @@
 
 /*
  * Copyright (c) 2005-2018 Imperas Software Ltd., www.imperas.com
+ * Copyright (c) 2018 microFPGA UG(h)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,9 +31,15 @@
 #define RVTEST_IO_WRITE_STR(_STR)
 #define RVTEST_IO_CHECK()
 
+#ifdef NO_IO_ASSERT
+#define RVTEST_IO_ASSERT_GPR_EQ(_R, _I) 
+#endif
+
+#ifndef NO_IO_ASSERT
 #define RVTEST_IO_ASSERT_GPR_EQ(_R, _I) \
-    li          t0, _I;                                                 \
+    li          t0, _I;                 \
     bne         _R, t0, fail_loop;                                      
+#endif
 
 
 #define RVTEST_IO_ASSERT_SFPR_EQ(_F, _R, _I)

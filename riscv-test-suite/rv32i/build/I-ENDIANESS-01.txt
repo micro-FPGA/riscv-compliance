@@ -1,0 +1,106 @@
+
+startfiles:     file format elf32-littleriscv
+
+
+Disassembly of section .text.init:
+
+00000000 <_start>:
+   0:	0080006f          	j	8 <reset_vector>
+
+00000004 <fail_loop>:
+   4:	0000006f          	j	4 <fail_loop>
+
+00000008 <reset_vector>:
+   8:	00000193          	li	gp,0
+
+0000000c <begin_testcode>:
+   c:	00000293          	li	t0,0
+  10:	fe501ae3          	bne	zero,t0,4 <fail_loop>
+  14:	00001817          	auipc	a6,0x1
+  18:	ff080813          	addi	a6,a6,-16 # 1004 <test_A_data>
+  1c:	00001897          	auipc	a7,0x1
+  20:	00488893          	addi	a7,a7,4 # 1020 <test_A_res>
+  24:	00082083          	lw	ra,0(a6)
+  28:	00085103          	lhu	sp,0(a6)
+  2c:	00285183          	lhu	gp,2(a6)
+  30:	fff84203          	lbu	tp,-1(a6)
+  34:	00084283          	lbu	t0,0(a6)
+  38:	00184303          	lbu	t1,1(a6)
+  3c:	00284383          	lbu	t2,2(a6)
+  40:	00384403          	lbu	s0,3(a6)
+  44:	0018a023          	sw	ra,0(a7)
+  48:	0028a223          	sw	sp,4(a7)
+  4c:	0038a423          	sw	gp,8(a7)
+  50:	0048a623          	sw	tp,12(a7)
+  54:	0058a823          	sw	t0,16(a7)
+  58:	0068aa23          	sw	t1,20(a7)
+  5c:	0078ac23          	sw	t2,24(a7)
+  60:	0088ae23          	sw	s0,28(a7)
+  64:	000042b7          	lui	t0,0x4
+  68:	56728293          	addi	t0,t0,1383 # 4567 <_end+0x3517>
+  6c:	f8511ce3          	bne	sp,t0,4 <fail_loop>
+  70:	12300293          	li	t0,291
+  74:	f85198e3          	bne	gp,t0,4 <fail_loop>
+  78:	08900293          	li	t0,137
+  7c:	f85214e3          	bne	tp,t0,4 <fail_loop>
+  80:	04500293          	li	t0,69
+  84:	f85290e3          	bne	t0,t0,4 <fail_loop>
+  88:	04500293          	li	t0,69
+  8c:	f6531ce3          	bne	t1,t0,4 <fail_loop>
+  90:	02300293          	li	t0,35
+  94:	f65398e3          	bne	t2,t0,4 <fail_loop>
+  98:	00100293          	li	t0,1
+  9c:	f65414e3          	bne	s0,t0,4 <fail_loop>
+  a0:	7600006f          	j	800 <ok_loop>
+
+000000a4 <end_testcode>:
+  a4:	c0001073          	unimp
+	...
+
+Disassembly of section .tohost:
+
+00000800 <ok_loop>:
+ 800:	0000006f          	j	800 <ok_loop>
+
+Disassembly of section .data:
+
+00001000 <test_A_data-0x4>:
+    1000:	89abcdef          	jal	s11,fffbd09a <_end+0xfffbc04a>
+
+00001004 <test_A_data>:
+    1004:	01234567          	0x1234567
+	...
+
+00001010 <begin_signature>:
+    1010:	bbbbbbbb          	0xbbbbbbbb
+    1014:	bbbbbbbb          	0xbbbbbbbb
+    1018:	bbbbbbbb          	0xbbbbbbbb
+    101c:	bbbbbbbb          	0xbbbbbbbb
+
+00001020 <test_A_res>:
+    1020:	ffff                	0xffff
+    1022:	ffff                	0xffff
+    1024:	ffff                	0xffff
+    1026:	ffff                	0xffff
+    1028:	ffff                	0xffff
+    102a:	ffff                	0xffff
+    102c:	ffff                	0xffff
+    102e:	ffff                	0xffff
+    1030:	ffff                	0xffff
+    1032:	ffff                	0xffff
+    1034:	ffff                	0xffff
+    1036:	ffff                	0xffff
+    1038:	ffff                	0xffff
+    103a:	ffff                	0xffff
+    103c:	ffff                	0xffff
+    103e:	ffff                	0xffff
+
+00001040 <end_signature>:
+    1040:	eeee                	fsw	fs11,92(sp)
+    1042:	eeee                	fsw	fs11,92(sp)
+    1044:	eeee                	fsw	fs11,92(sp)
+    1046:	eeee                	fsw	fs11,92(sp)
+    1048:	eeee                	fsw	fs11,92(sp)
+    104a:	eeee                	fsw	fs11,92(sp)
+    104c:	eeee                	fsw	fs11,92(sp)
+    104e:	eeee                	fsw	fs11,92(sp)
