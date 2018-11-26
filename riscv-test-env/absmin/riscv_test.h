@@ -28,12 +28,16 @@
         .align  6;                                                      \
         .globl _start;                                                  \
         .globl fail_loop;                                               \
+        .globl ok_loop;                                                 \
 _start:                                                                 \
         /* reset vector */                                              \
         j reset_vector;                                                 \
         .align 2;                                                       \
 fail_loop:                                                              \
         j fail_loop;                                                    \
+        .align 4;                                                       \
+ok_loop:                                                                \
+        j ok_loop;                                                      \
 reset_vector:                                                           \
         li TESTNUM, 0;                                                  \
 begin_testcode:
@@ -54,6 +58,39 @@ end_testcode:                                                           \
 #define RVTEST_SYNC nop
 
 #define RVTEST_PASS                                                     \
+        la a0, begin_signature;                                         \
+        la a1, end_signature;                                           \
+        li a2, 0xC000;                                                  \
+complience_halt_loop: \
+        beq a0, a1, complience_halt_break; \
+        addi a3, a0, 16; \
+complience_halt_loop2: \
+        addi a3, a3, -1; \
+        lb a4, 0 (a3); \
+        srai a5, a4, 4; \
+        andi a5, a5, 0xF; \
+        li a6, 10; \
+        blt a5, a6, notLetter; \
+        addi a5, a5, 39; \
+notLetter: \
+        addi a5, a5, 0x30; \
+        sb a5, 0 (a2); \
+        srai a5, a4, 0; \
+        andi a5, a5, 0xF; \
+        li a6, 10; \
+        blt a5, a6, notLetter2; \
+        addi a5, a5, 39; \
+notLetter2: \
+        addi a5, a5, 0x30; \
+        sb a5, 0 (a2); \
+        bne a0, a3,complience_halt_loop2;  \
+        addi a0, a0, 16; \
+        li a4, 0x0A; \
+        sb a4, 0 (a2); \
+        j complience_halt_loop; \
+complience_halt_break:; \
+        li a4, 0xFF; \
+        sb a4, 0 (a2); \
         j ok_loop
 
 #define TESTNUM gp
@@ -64,16 +101,16 @@ end_testcode:                                                           \
 // Data Section Macro
 //-----------------------------------------------------------------------
 
+//        .align 8; .global ok_loop; ok_loop: j ok_loop;                  \
+
 #define EXTRA_DATA
 
 #define RVTEST_DATA_BEGIN                                               \
         EXTRA_DATA                                                      \
-        .pushsection .tohost,"aw",@progbits;                            \
-        .align 8; .global ok_loop; ok_loop: j ok_loop;                  \
-        .popsection;                                                    \
         .align 4;                                                       \
-        .global begin_signature; begin_signature:                       \
-        .dword 0xbbbbbbbbbbbbbbbb; .dword 0xbbbbbbbbbbbbbbbb;
+        .dword 0xbbbbbbbbbbbbbbbb; .dword 0xbbbbbbbbbbbbbbbb;           \
+        .global begin_signature; begin_signature:                       
+
 
 #define RVTEST_DATA_END .align 4;                                       \
         .global end_signature; end_signature:                           \
