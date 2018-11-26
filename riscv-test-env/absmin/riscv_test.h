@@ -61,36 +61,31 @@ end_testcode:                                                           \
         la a0, begin_signature;                                         \
         la a1, end_signature;                                           \
         li a2, 0xC000;                                                  \
-complience_halt_loop: \
-        beq a0, a1, complience_halt_break; \
-        addi a3, a0, 16; \
-complience_halt_loop2: \
-        addi a3, a3, -1; \
-        lb a4, 0 (a3); \
-        srai a5, a4, 4; \
-        andi a5, a5, 0xF; \
-        li a6, 10; \
-        blt a5, a6, notLetter; \
-        addi a5, a5, 39; \
-notLetter: \
-        addi a5, a5, 0x30; \
-        sb a5, 0 (a2); \
-        srai a5, a4, 0; \
-        andi a5, a5, 0xF; \
-        li a6, 10; \
-        blt a5, a6, notLetter2; \
-        addi a5, a5, 39; \
-notLetter2: \
-        addi a5, a5, 0x30; \
-        sb a5, 0 (a2); \
-        bne a0, a3,complience_halt_loop2;  \
-        addi a0, a0, 16; \
-        li a4, 0x0A; \
-        sb a4, 0 (a2); \
-        j complience_halt_loop; \
-complience_halt_break:; \
-        li a4, 0xFF; \
-        sb a4, 0 (a2); \
+1:      beq a0, a1, 5f;    \
+        addi a3, a0, 16;   \
+2:      addi a3, a3, -1;   \
+        lb a4, 0 (a3);     \
+        srai a5, a4, 4;    \
+        andi a5, a5, 0xF;  \
+        li a6, 10;         \
+        blt a5, a6, 3f;    \
+        addi a5, a5, 39;   \
+3:      addi a5, a5, 0x30; \
+        sb a5, 0 (a2);     \
+        srai a5, a4, 0;    \
+        andi a5, a5, 0xF;  \
+        li a6, 10;         \
+        blt a5, a6, 4f;    \
+        addi a5, a5, 39;   \
+4:      addi a5, a5, 0x30; \
+        sb a5, 0 (a2);     \
+        bne a0, a3, 2b;    \
+        addi a0, a0, 16;   \
+        li a4, 0x0A;       \
+        sb a4, 0 (a2);     \
+        j 1b;              \
+5:      li a4, 0xFF;       \
+        sb a4, 0 (a2);     \
         j ok_loop
 
 #define TESTNUM gp
